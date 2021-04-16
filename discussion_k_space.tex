@@ -1,0 +1,196 @@
+%inicio
+\documentclass[12pt, letterpaper, twoside]{article}
+
+%pacotes usados
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage[table]{xcolor}
+\usepackage[a4paper,, margin=1in]{geometry}
+\usepackage{listings}
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=1pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=1
+}
+
+\lstset{style=mystyle}
+
+\makeindex
+%config titulo
+\author{\large \\ \\ \\ \\ \\  Advisor: Fernando F Paiva \\
+	Scientific Initiation Report \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\}
+
+\title{ \textbf{Space K analysis and its impact in the generated image. \\ }}
+
+\date{April 2021 
+}
+
+
+%begin
+\begin{document}
+	\begin{figure*}[t]
+		\qquad \qquad \qquad \qquad \includegraphics[scale=0.3]{ifsc_usp.jpg} \\ \\
+			\centering
+			 Rafael Henrique Ferreira da Silva
+	\end{figure*}
+
+	%titulo	
+	\maketitle
+	\thispagestyle{empty}
+	\newpage
+	%página ÍNDICE
+	\tableofcontents
+	\pagenumbering{arabic} 
+	\newpage
+
+		\section{Abstract}
+		\qquad In this study we are going to analyse the impact of the k-space at the formation of the final image. We are using a image from a brain in gray scale level.\\
+		\qquad We want to display and compare four types of image. The first one is the original brain image, the second one is the k-space generated from it, the third one is the k-space truncated.We are picking some region and changing its complex values, setting up to zero, and then generating the third image. For the last, we have the fourth image, it is the generated image from the truncated k-space.\\
+		\qquad After this proccess we are going to analyse its implications the k-space truncated have in the final image.
+		\newpage
+		\section{Introduction}
+		\qquad When we have a MRI (Magnetic Resonance Imaging) we first want to generated its k-space. The K-space is created from the magnetic field and have all frequencies that make up the image, we want to analyse those frequencies in the space of complex numbers, and want to use the IFT (Inverse Fourier Transform) to create some meaning to those frequencies, generating the image. \\ 
+		\qquad After we apply the Inverse Fourier Transform to the k-space we have the resultanting image, the inverse process is possible, applying the Fourier Transform to an image resulting its k-space, after that we can manipulate its k-space and generating a new image from the k-space manipulated, in this context we are going to call "truncated k-space" the manipulated k-space.\newline
+	
+		\begin{figure}[h]
+		\includegraphics[scale=0.9]{image_and_kspace.png}
+		\caption{relation between image and k-space}
+		\end{figure}
+		\newpage
+		
+	  \section{Results}
+	  
+	  \qquad Now we are going to generated a certain region in the original image k space, and manipulated its width, viewing the generated image from it, how the choosen region influenciate in the final image. The code used to generate all the results is bellow: 
+	  
+	  \subsection{PYTHON CODE}
+	  \lstinputlisting[language=Python]{k_space_analysis.py}
+	  
+	  \newpage
+	  \subsection{Border}
+	  \qquad Creating a region of 0 values in the border of k-space and going down to the center, the region width is variable, bellow there is the following results.
+	  
+	  	\begin{figure}[hbt!]
+	  	\centering
+	  	\includegraphics[scale=0.5]{border2.png}
+	  	\caption{border 1}
+	    \end{figure}
+    
+    	\begin{figure}[hbt!]
+    	\centering
+    	\includegraphics[scale=0.5]{border4.png}
+    	\caption{border 2}
+   		 \end{figure}
+   	 
+   	 	\newpage 
+   	 	
+   	 	\begin{figure}[hbt!]
+   	 	\centering
+   	 	\includegraphics[scale=0.5]{border6.png}
+   	 	\caption{border 3}
+   	 	\end{figure}
+    	
+    	\begin{figure}[hbt!]
+    		\centering
+    		\includegraphics[scale=0.5]{border7.png}
+    		\caption{border 4}
+    	\end{figure}
+    
+   		\newpage
+   		\subsection{Middle}
+   		\qquad Now it is created a region in the middle of the k space, with variable width, following the results:
+   		
+   			\begin{figure}[hbt!]
+   			\centering
+   			\includegraphics[scale=0.5]{middle2.png}
+   			\caption{middle 1}
+   		\end{figure}
+   	
+   		\begin{figure}[hbt!]
+   		\centering
+   		\includegraphics[scale=0.5]{middle3.png}
+   		\caption{middle 2}
+   	   \end{figure}
+      
+      \newpage
+      
+      	\begin{figure}[hbt!]
+      	\centering
+      	\includegraphics[scale=0.5]{middle4.png}
+      	\caption{middle 3}
+      \end{figure}
+  
+  	\begin{figure}[hbt!]
+  	\centering
+  	\includegraphics[scale=0.5]{middle5.png}
+  	\caption{middle 4}
+  \end{figure}
+
+	\newpage
+	
+	\subsection{Center}
+	
+	\qquad For the last results we created a region at the center. 
+	
+	\begin{figure}[hbt!]
+		\centering
+		\includegraphics[scale=0.5]{center1.png}
+		\caption{center 1}
+	\end{figure}
+
+\begin{figure}[hbt!]
+	\centering
+	\includegraphics[scale=0.5]{center2.png}
+	\caption{center 2}
+\end{figure}
+
+\newpage
+
+\begin{figure}[hbt!]
+	\centering
+	\includegraphics[scale=0.5]{center3.png}
+	\caption{center 3}
+\end{figure}
+	  
+\begin{figure}[hbt!]
+	\centering
+	\includegraphics[scale=0.5]{center4.png}
+	\caption{center 4}
+\end{figure}	  
+
+\newpage
+
+\section{Conclusion}
+
+\qquad From these experiments we can conclude that the low frequencies (brighter in k space) form the image, its contrast and its colors, and the high frequencies form the contour region, that is, the image details. We also can generate and have a nice idea of the image only with half of its k space.  \\
+\qquad When the border region is set to 0 both complex coordinates we have a low contourn details (width is growing), kind of a blurry image. On the other side, when a region in center is set to 0 (both complex coordinates) we have a low intensity image and its colors are set to black, but we still have a fine detail contour.
+
+\newpage 
+
+\section{References}
+
+*Estudo e implementação da reconstrução de imagens de MR adquiridas com múltiplas bobinas, Rafael Ferreira da Costa Vescovi, UNICAMP.
+
+	
+
+\end{document}
